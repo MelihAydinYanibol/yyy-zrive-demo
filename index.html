@@ -22,16 +22,52 @@
             color: black;
         }
 
+        @keyframes fadeSlideUp {
+            from {
+                opacity: 0;
+                transform: translateY(24px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes heroGlowIn {
+            from {
+                opacity: 0;
+                transform: translateY(14px) scale(0.98);
+                letter-spacing: 6px;
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+                letter-spacing: 10px;
+            }
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(24px);
+            transition: opacity 0.7s ease, transform 0.7s ease;
+            will-change: opacity, transform;
+        }
+
+        .reveal.in-view {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
         /* --- NAVBAR --- */
         nav {
             position: absolute;
-            top: 0;
+            top: 10px;
             width: 100%;
-            padding: 20px 0;
+            padding: 24px 0;
             display: flex;
             justify-content: center;
             align-items: center;
-            gap: 40px;
+            gap: 46px;
             background: transparent;
             z-index: 100;
         }
@@ -39,7 +75,7 @@
         nav a {
             color: white;
             text-decoration: none;
-            font-size: 1.1rem;
+            font-size: 1.2rem;
             font-weight: 500;
             letter-spacing: 1px;
             transition: color 0.3s ease;
@@ -58,6 +94,7 @@
             align-items: center;
             /* Placeholder background image from Unsplash */
             background: url('https://images.unsplash.com/photo-1540575467063-178a50c2df87?ixlib=rb-1.2.1&auto=format&fit=crop&w=1920&q=80') center/cover no-repeat;
+            background-attachment: fixed;
         }
 
         /* Black layer with 30% transparency */
@@ -76,6 +113,7 @@
             font-size: 6rem;
             font-weight: 700;
             letter-spacing: 10px;
+            animation: heroGlowIn 1s ease-out 0.2s both;
         }
 
         /* --- SECTION 2: EVENT INFO --- */
@@ -136,6 +174,11 @@
             display: flex;
             flex-direction: column;
             align-items: center;
+            transition: transform 0.35s ease;
+        }
+
+        .team-member:hover {
+            transform: translateY(-6px);
         }
 
         .team-member img {
@@ -173,6 +216,12 @@
             padding: 40px;
             border-radius: 10px;
             box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: box-shadow 0.35s ease, transform 0.35s ease;
+        }
+
+        .form-container:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 14px 30px rgba(0,0,0,0.1);
         }
 
         form {
@@ -187,11 +236,14 @@
             border: 1px solid #ccc;
             border-radius: 5px;
             font-size: 1rem;
+            transition: border-color 0.25s ease, box-shadow 0.25s ease, transform 0.25s ease;
         }
 
         input:focus, textarea:focus {
             outline: none;
             border-color: black;
+            transform: translateY(-1px);
+            box-shadow: 0 8px 16px rgba(0,0,0,0.08);
         }
 
         button {
@@ -203,11 +255,16 @@
             border: none;
             border-radius: 5px;
             cursor: pointer;
-            transition: background 0.3s ease;
+            transition: background 0.3s ease, transform 0.2s ease;
         }
 
         button:hover {
             background-color: #333;
+            transform: translateY(-2px);
+        }
+
+        button:active {
+            transform: translateY(0);
         }
 
         /* --- SECTION 5: FOOTER (Optional structural end) --- */
@@ -377,7 +434,7 @@
             </p>
             
             <div class="form-container">
-                <form action="#" method="POST">
+                <form id="participation-form">
                     <input type="text" name="isim" placeholder="Adınız" required>
                     <input type="text" name="soyisim" placeholder="Soyadınız" required>
                     <input type="email" name="email" placeholder="E-posta Adresiniz" required>
@@ -396,6 +453,43 @@
     <footer>
         <p>&copy; 2026 yyyazılım. Tüm Hakları Saklıdır.</p>
     </footer>
+
+    <script>
+        const participationForm = document.getElementById('participation-form');
+
+        if (participationForm) {
+            participationForm.addEventListener('submit', function (event) {
+                event.preventDefault();
+                alert('Katılım isteğiniz alındı. Teşekkür ederiz.');
+                participationForm.reset();
+            });
+        }
+
+        const revealTargets = document.querySelectorAll(
+            '#info .container, #team .team-row, #participate .container, .team-member'
+        );
+
+        revealTargets.forEach(function (item, index) {
+            item.classList.add('reveal');
+            item.style.transitionDelay = Math.min(index * 70, 500) + 'ms';
+        });
+
+        const revealObserver = new IntersectionObserver(
+            function (entries, observer) {
+                entries.forEach(function (entry) {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('in-view');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            },
+            { threshold: 0.15 }
+        );
+
+        revealTargets.forEach(function (item) {
+            revealObserver.observe(item);
+        });
+    </script>
 
 </body>
 </html>
