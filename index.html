@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ZİRVE - Etkinlik Platformu</title>
+    <style>
+        /* Import a modern font */
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;500;700&display=swap');
+
+        /* Global Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Montserrat', sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: white;
+            color: black;
+        }
+
+        /* --- NAVBAR --- */
+        nav {
+            position: absolute;
+            top: 0;
+            width: 100%;
+            padding: 20px 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 40px;
+            background: transparent;
+            z-index: 100;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-size: 1.1rem;
+            font-weight: 500;
+            letter-spacing: 1px;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #d1d1d1;
+        }
+
+        /* --- SECTION 1: HERO --- */
+        #hero {
+            position: relative;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            /* Placeholder background image from Unsplash */
+            background: url('https://images.unsplash.com/photo-1540575467063-178a50c2df87?ixlib=rb-1.2.1&auto=format&fit=crop&w=1920&q=80') center/cover no-repeat;
+        }
+
+        /* Black layer with 30% transparency */
+        #hero::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background-color: rgba(0, 0, 0, 0.3);
+            z-index: 1;
+        }
+
+        #hero h1 {
+            position: relative;
+            z-index: 2;
+            color: white;
+            font-size: 6rem;
+            font-weight: 700;
+            letter-spacing: 10px;
+        }
+
+        /* --- SECTION 2: EVENT INFO --- */
+        #info {
+            padding: 80px 20px;
+            background-color: white;
+            text-align: center;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        #info h2, #team h2, #participate h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+        }
+
+        #info p {
+            font-size: 1.2rem;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        /* --- SECTION 3: WHO WE ARE (TEAM) --- */
+        #team {
+            padding: 80px 20px;
+            background-color: white;
+        }
+
+        .team-row {
+            margin-bottom: 50px;
+        }
+
+        .team-row-title {
+            text-align: center;
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 30px;
+            color: #222;
+            text-decoration: underline;
+            text-underline-offset: 8px;
+        }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 30px;
+            justify-content: center;
+            text-align: center;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .team-member {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .team-member img {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 15px;
+            border: 3px solid #eee;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .team-member h4 {
+            font-size: 1.1rem;
+            font-weight: 500;
+        }
+
+        /* --- SECTION 4: PARTICIPATE FORM --- */
+        #participate {
+            padding: 80px 20px;
+            background-color: white;
+            border-top: 1px solid #eaeaea;
+        }
+
+        .form-container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: #fafafa;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        input, textarea {
+            width: 100%;
+            padding: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+
+        input:focus, textarea:focus {
+            outline: none;
+            border-color: black;
+        }
+
+        button {
+            padding: 15px;
+            background-color: black;
+            color: white;
+            font-size: 1.1rem;
+            font-weight: 700;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #333;
+        }
+
+        /* --- SECTION 5: FOOTER (Optional structural end) --- */
+        footer {
+            background-color: black;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            font-size: 0.9rem;
+        }
+
+        /* --- RESPONSIVE DESIGN FOR MOBILE --- */
+        @media (max-width: 768px) {
+            nav {
+                gap: 15px;
+                padding: 15px 10px;
+            }
+
+            nav a {
+                font-size: 0.9rem;
+            }
+
+            #hero h1 {
+                font-size: 3.5rem;
+                letter-spacing: 5px;
+            }
+
+            #info h2, #team h2, #participate h2 {
+                font-size: 2rem;
+            }
+
+            .form-container {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- NAVBAR -->
+    <nav>
+        <a href="#hero">ZİRVE</a>
+        <a href="#team">Takımımız</a>
+        <a href="#participate">Etkinliğe Katıl</a>
+    </nav>
+
+    <!-- SECTION 1: HERO -->
+    <header id="hero">
+        <h1>ZİRVE</h1>
+    </header>
+
+    <!-- SECTION 2: EVENT INFO -->
+    <section id="info">
+        <div class="container">
+            <h2>Etkinliğimiz Hakkında</h2>
+            <p>
+                ZİRVE, okulumuzun en kapsamlı öğrenci kulübü etkinliklerinden biridir. Alanında uzman konukların, 
+                sektör liderlerinin ve ilham verici konuşmacıların yer alacağı seminerlerimizle vizyonunuzu genişletmeyi 
+                hedefliyoruz. Teknoloji, kariyer, kişisel gelişim ve liderlik gibi birçok farklı konuda gerçekleşecek 
+                olan seminer serimizde bizimle birlikte olun, geleceğe bugünden adım atın!
+            </p>
+        </div>
+    </section>
+
+    <!-- SECTION 3: WHO WE ARE -->
+    <section id="team">
+        <div class="container">
+            <h2 style="text-align: center; margin-bottom: 50px;">Kim O Kimdir?</h2>
+            
+            <!-- Row 1: Management -->
+            <div class="team-row">
+                <h3 class="team-row-title">Yönetim Kurulu</h3>
+                <div class="team-grid">
+                    <div class="team-member">
+                        <img src="photos/merve.png" alt="Member">
+                        <h4>Merve</h4>
+                    </div>
+                    <div class="team-member">
+                        <img src="photos/sümeyye.png" alt="Member">
+                        <h4>Sümeyye</h4>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Row 2: Event Management -->
+            <div class="team-row">
+                <h3 class="team-row-title">Etkinlik Yönetimi</h3>
+                <div class="team-grid">
+                    <div class="team-member">
+                        <img src="photos/ege1.png" alt="Member">
+                        <h4>Ege Atılgan</h4>
+                    </div>
+                    <div class="team-member">
+                        <img src="https://i.pravatar.cc/150?img=20" alt="Member">
+                        <h4>Saba</h4>
+                    </div>
+                    <div class="team-member">
+                        <img src="https://i.pravatar.cc/150?img=33" alt="Member">
+                        <h4>Esma</h4>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Row 3: Software Team -->
+            <div class="team-row">
+                <h3 class="team-row-title">Yazılım Ekibi</h3>
+                <div class="team-grid">
+                    <div class="team-member">
+                        <img src="photos/melih.png" alt="Member">
+                        <h4>Aydın Melih Yanıbol</h4>
+                    </div>
+                    <div class="team-member">
+                        <img src="photos/bunyamin.png" alt="Member">
+                        <h4>Bünyamin</h4>
+                    </div>
+                    <div class="team-member">
+                        <img src="https://i.pravatar.cc/150?img=59" alt="Member">
+                        <h4>Umut</h4>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Row 4: Social Media Management -->
+            <div class="team-row">
+                <h3 class="team-row-title">Sosyal Medya Yönetimi</h3>
+                <div class="team-grid">
+                    <div class="team-member">
+                        <img src="https://i.pravatar.cc/150?img=44" alt="Member">
+                        <h4>İrem</h4>
+                    </div>
+                    <div class="team-member">
+                        <img src="https://i.pravatar.cc/150?img=60" alt="Member">
+                        <h4>Başak</h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 4: PARTICIPATE -->
+    <section id="participate">
+        <div class="container">
+            <h2 style="text-align: center;">Etkinliğe Katıl</h2>
+            <p style="text-align: center; margin-bottom: 30px; color:#555;">
+                Seminerlerimizde yerinizi ayırtmak için lütfen aşağıdaki formu eksiksiz doldurun.
+            </p>
+            
+            <div class="form-container">
+                <form action="#" method="POST">
+                    <input type="text" name="isim" placeholder="Adınız" required>
+                    <input type="text" name="soyisim" placeholder="Soyadınız" required>
+                    <input type="email" name="email" placeholder="E-posta Adresiniz" required>
+                    <input type="tel" name="telefon" placeholder="Telefon Numaranız" required>
+                    <textarea name="mesaj" rows="4" placeholder="Sormak veya eklemek istediğiniz bir şey var mı?"></textarea>
+                    <button type="submit">Katılım İsteği Gönder</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <p>&copy; 2023 ZİRVE Etkinliği. Tüm Hakları Saklıdır.</p>
+    </footer>
+
+</body>
+</html>
