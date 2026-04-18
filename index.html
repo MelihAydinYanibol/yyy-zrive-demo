@@ -118,55 +118,108 @@
 
         /* --- SECTION 2: EVENT INFO --- */
         #info {
-            padding: 80px 20px;
-            background-color: white;
+            padding: 100px 20px;
+            background: linear-gradient(135deg, #f8f9ff 0%, #f0f4ff 100%);
             text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        #info::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -10%;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(99,102,241,0.08) 0%, transparent 70%);
+            border-radius: 50%;
+            pointer-events: none;
         }
 
         .container {
             max-width: 900px;
             margin: 0 auto;
+            position: relative;
+            z-index: 1;
         }
 
         #info h2, #team h2, #participate h2 {
-            font-size: 2.5rem;
-            margin-bottom: 20px;
+            font-size: 2.8rem;
+            margin-bottom: 30px;
             text-transform: uppercase;
+            font-weight: 700;
+            letter-spacing: 2px;
+            background: linear-gradient(135deg, #1f2937 0%, #4f46e5 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
 
         #info p {
-            font-size: 1.2rem;
-            line-height: 1.6;
-            color: #333;
+            font-size: 1.15rem;
+            line-height: 1.8;
+            color: #4b5563;
+            max-width: 800px;
+            margin: 0 auto;
         }
 
         /* --- SECTION 3: WHO WE ARE (TEAM) --- */
         #team {
-            padding: 80px 20px;
-            background-color: white;
+            padding: 100px 20px;
+            background: linear-gradient(180deg, white 0%, #fafbff 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        #team::after {
+            content: '';
+            position: absolute;
+            bottom: -50%;
+            left: -10%;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(79,70,229,0.06) 0%, transparent 70%);
+            border-radius: 50%;
+            pointer-events: none;
         }
 
         .team-row {
-            margin-bottom: 50px;
+            margin-bottom: 80px;
+            position: relative;
+            z-index: 1;
         }
 
         .team-row-title {
             text-align: center;
-            font-size: 1.5rem;
+            font-size: 1.6rem;
             font-weight: 700;
-            margin-bottom: 30px;
-            color: #222;
-            text-decoration: underline;
-            text-underline-offset: 8px;
+            margin-bottom: 50px;
+            color: #1f2937;
+            text-decoration: none;
+            position: relative;
+            padding-bottom: 15px;
+        }
+
+        .team-row-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 4px;
+            background: linear-gradient(90deg, #4f46e5 0%, #7c3aed 100%);
+            border-radius: 2px;
         }
 
         .team-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-            gap: 30px;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
             justify-content: center;
             text-align: center;
-            max-width: 1000px;
+            max-width: 1100px;
             margin: 0 auto;
         }
 
@@ -174,97 +227,153 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            transition: transform 0.35s ease;
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            padding: 30px 20px;
+            border-radius: 12px;
+            background: white;
+            border: 1px solid rgba(99,102,241,0.1);
+            box-shadow: 0 4px 6px rgba(0,0,0,0.04);
         }
 
         .team-member:hover {
-            transform: translateY(-6px);
+            transform: translateY(-12px);
+            box-shadow: 0 20px 40px rgba(79,70,229,0.15);
+            border-color: rgba(79,70,229,0.3);
         }
 
         .team-member img {
-            width: 120px;
-            height: 120px;
-            border-radius: 50%;
+            width: 140px;
+            height: 140px;
+            border-radius: 12px;
             object-fit: cover;
-            margin-bottom: 15px;
-            border: 3px solid #eee;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+            border: 3px solid #f0f0f0;
+            box-shadow: 0 8px 16px rgba(79,70,229,0.12);
+            transition: all 0.4s ease;
+        }
+
+        .team-member:hover img {
+            border-color: #4f46e5;
+            box-shadow: 0 12px 24px rgba(79,70,229,0.2);
         }
 
         .team-member h4 {
-            font-size: 1.1rem;
-            font-weight: 500;
+            font-size: 1.15rem;
+            font-weight: 600;
+            color: #1f2937;
+            margin-bottom: 8px;
         }
 
         .team-member .role {
-            font-size: 0.9rem;
-            color: #7a7a7a;
+            font-size: 0.95rem;
+            color: #6b7280;
             margin-top: 6px;
+            font-weight: 500;
         }
 
         /* --- SECTION 4: PARTICIPATE FORM --- */
         #participate {
-            padding: 80px 20px;
-            background-color: white;
-            border-top: 1px solid #eaeaea;
+            padding: 100px 20px;
+            background: linear-gradient(135deg, #f0f4ff 0%, #e0e7ff 100%);
+            border-top: none;
+            position: relative;
+            overflow: hidden;
+        }
+
+        #participate::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -10%;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(139,92,246,0.08) 0%, transparent 70%);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+
+        #participate .container {
+            position: relative;
+            z-index: 1;
+        }
+
+        #participate > .container > p {
+            text-align: center;
+            margin-bottom: 40px;
+            color: #4b5563;
+            font-size: 1.05rem;
+            font-weight: 500;
         }
 
         .form-container {
-            max-width: 600px;
+            max-width: 650px;
             margin: 0 auto;
-            background: #fafafa;
-            padding: 40px;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-            transition: box-shadow 0.35s ease, transform 0.35s ease;
+            background: white;
+            padding: 50px;
+            border-radius: 16px;
+            box-shadow: 0 10px 40px rgba(79,70,229,0.12);
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            border: 1px solid rgba(79,70,229,0.1);
         }
 
         .form-container:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 14px 30px rgba(0,0,0,0.1);
+            transform: translateY(-8px);
+            box-shadow: 0 20px 60px rgba(79,70,229,0.18);
+            border-color: rgba(79,70,229,0.3);
         }
 
         form {
             display: flex;
             flex-direction: column;
-            gap: 20px;
+            gap: 18px;
         }
 
         input, textarea {
             width: 100%;
-            padding: 15px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
+            padding: 14px 18px;
+            border: 2px solid #e5e7eb;
+            border-radius: 10px;
             font-size: 1rem;
-            transition: border-color 0.25s ease, box-shadow 0.25s ease, transform 0.25s ease;
+            font-family: 'Montserrat', sans-serif;
+            transition: all 0.3s ease;
+            background-color: #f9fafb;
+        }
+
+        input::placeholder, textarea::placeholder {
+            color: #9ca3af;
+            font-weight: 500;
         }
 
         input:focus, textarea:focus {
             outline: none;
-            border-color: black;
-            transform: translateY(-1px);
-            box-shadow: 0 8px 16px rgba(0,0,0,0.08);
+            border-color: #4f46e5;
+            background-color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 12px 24px rgba(79,70,229,0.15);
         }
 
         button {
-            padding: 15px;
-            background-color: black;
+            padding: 16px;
+            background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
             color: white;
             font-size: 1.1rem;
             font-weight: 700;
             border: none;
-            border-radius: 5px;
+            border-radius: 10px;
             cursor: pointer;
-            transition: background 0.3s ease, transform 0.2s ease;
+            transition: all 0.3s ease;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            margin-top: 10px;
         }
 
         button:hover {
-            background-color: #333;
-            transform: translateY(-2px);
+            transform: translateY(-3px);
+            box-shadow: 0 12px 30px rgba(79,70,229,0.3);
         }
 
         button:active {
-            transform: translateY(0);
+            transform: translateY(-1px);
         }
 
         /* --- SECTION 5: FOOTER (Optional structural end) --- */
@@ -294,10 +403,38 @@
 
             #info h2, #team h2, #participate h2 {
                 font-size: 2rem;
+                letter-spacing: 1px;
+            }
+
+            #info, #team, #participate {
+                padding: 60px 20px;
             }
 
             .form-container {
-                padding: 20px;
+                padding: 30px 20px;
+            }
+
+            .team-grid {
+                grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+                gap: 20px;
+            }
+
+            .team-member {
+                padding: 20px 15px;
+            }
+
+            .team-member img {
+                width: 120px;
+                height: 120px;
+            }
+
+            input, textarea {
+                padding: 12px 15px;
+                font-size: 16px;
+            }
+
+            button {
+                padding: 14px;
             }
         }
     </style>
